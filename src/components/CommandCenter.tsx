@@ -1,9 +1,22 @@
 import { useState } from "react";
-import { Search, ArrowRight } from "lucide-react";
+import { Search, ArrowRight, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CommandCenter = () => {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleAnalyze = () => {
+    if (!query.trim()) return;
+    navigate(`/analyze/${query.toUpperCase()}`);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleAnalyze();
+    }
+  };
 
   return (
     <section className="container mx-auto px-6 py-16">
@@ -71,16 +84,23 @@ const CommandCenter = () => {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search Symbol (e.g., TCS.NS)..."
+                onKeyDown={handleKeyDown}
+                placeholder="Search Symbol (e.g., AAPL)..."
                 className="h-13 w-full border-2 border-border bg-background pl-11 pr-16 font-mono text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none transition-colors"
               />
               <kbd className="absolute right-4 top-1/2 -translate-y-1/2 border border-border bg-muted px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
-                ⌘K
+                ↵
               </kbd>
             </div>
-            <button className="flex h-12 w-full items-center justify-center gap-2 bg-foreground font-mono text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-all hover:bg-foreground/90 hover:gap-3">
-              Run Analysis
-              <ArrowRight className="h-4 w-4" />
+            <button 
+              onClick={handleAnalyze}
+              disabled={!query.trim()}
+              className="flex h-12 w-full items-center justify-center gap-2 bg-foreground font-mono text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-all hover:bg-foreground/90 disabled:opacity-50 disabled:cursor-not-allowed hover:gap-3"
+            >
+              <>
+                Run Analysis
+                <ArrowRight className="h-4 w-4" />
+              </>
             </button>
           </div>
           <div className="mt-6 border-t border-border pt-4">

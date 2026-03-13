@@ -6,11 +6,13 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background grain-overlay">
+    <div className="min-h-screen bg-background grain-overlay flex flex-col">
       <Navbar />
       <TickerRibbon />
-      <CommandCenter />
-      <AlgorithmSection />
+      <main className="flex-1">
+        <CommandCenter />
+        <AlgorithmSection />
+      </main>
       <Footer />
     </div>
   );

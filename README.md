@@ -20,19 +20,26 @@ If you want to work locally using your own IDE, you can clone this repo and push
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
+## How to Run This Project
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+This project relies on both a Python API backend and a React/Vite frontend. Both must be running simultaneously for the analysis to work.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 1. Start the Backend API (Terminal 1)
+Open your terminal and navigate to the backend directory:
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate   # (On Windows)
+# source venv/bin/activate # (On Mac/Linux)
+pip install -r requirements.txt
+python main.py
+```
+*Note: The backend will automatically bind to `http://127.0.0.1:8000`.*
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 2. Start the Frontend Application (Terminal 2)
+In a completely separate terminal window, run the frontend server from the root directory:
+```bash
+npm install
 npm run dev
 ```
 
