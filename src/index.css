@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,41 +6,39 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 28% 17%;
+    --background: 40 20% 97%;
+    --foreground: 220 30% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
+    --card: 40 25% 99%;
+    --card-foreground: 220 30% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+    --popover-foreground: 220 30% 12%;
 
-    --primary: 217 91% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 60% 15%;
+    --primary-foreground: 40 20% 97%;
 
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 217 91% 11%;
+    --secondary: 35 30% 92%;
+    --secondary-foreground: 220 30% 12%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 35 20% 93%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: 160 84% 39%;
+    --accent: 158 64% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 4 80% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 11%;
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 220 60% 15%;
 
-    --radius: 0.375rem;
+    --radius: 0.25rem;
 
-    --positive: 160 84% 39%;
-    --negative: 0 84% 60%;
-
-    --surface-elevated: 0 0% 100%;
-    --surface-subtle: 210 20% 96%;
+    --positive: 158 64% 40%;
+    --negative: 4 80% 56%;
+    --gold: 38 92% 50%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -65,7 +63,7 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 160 84% 39%;
+    --accent: 158 64% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
@@ -95,12 +93,29 @@
   }
 }
 
-@layer utilities {
-  .ticker-scroll {
-    animation: ticker-scroll 40s linear infinite;
+@layer components {
+  .editorial-divider {
+    @apply relative;
   }
-  @keyframes ticker-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  .editorial-divider::before {
+    content: '';
+    @apply absolute left-0 right-0 top-0 h-px bg-foreground/20;
+  }
+  .editorial-divider::after {
+    content: '';
+    @apply absolute left-0 right-0 top-[3px] h-px bg-foreground/10;
+  }
+}
+
+@layer utilities {
+  .ticker-float {
+    animation: ticker-float 6s ease-in-out infinite;
+  }
+  @keyframes ticker-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   }
 }
