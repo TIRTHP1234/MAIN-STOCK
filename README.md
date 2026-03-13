@@ -1,80 +1,145 @@
-# Welcome to your Lovable project
+# StockPredict AI 📈
 
-## Project info
+An AI-powered stock analysis and prediction platform built with **React** (frontend) and **FastAPI** (backend). Enter any stock ticker to get real-time data, interactive charts, and multi-model machine learning predictions for both short-term (5-day) and long-term (30-day) price targets.
 
+**Live Demo:** https://main-stock.onrender.com
 
+---
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- 🤖 **4 ML Models** — Linear Regression, ARIMA, KNN, and SVM predictions
+- 📊 **Interactive Charts** — Historical price + all 4 model forecast lines
+- 🎯 **AI Forecast Summary** — Unified 5-day & 30-day price targets with BUY/SELL/HOLD signals
+- ⚡ **Algorithm Metrics** — MSE, RMSE, R² Score, and Directional Accuracy per model
+- 💱 **Indian Rupee (₹)** formatting
+- 🌙 **Dark / Light Mode** toggle
+- 🎬 **3D Loading Animation** during analysis
 
-**Use**
+---
 
-Simply visit the  and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, Recharts |
+| Backend | Python, FastAPI, Uvicorn |
+| Data | Yahoo Finance via `yfinance` |
+| ML | scikit-learn (Linear Regression, KNN, SVM), statsmodels (ARIMA) |
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-## How to Run This Project
+- Python 3.10+
+- Node.js 18+ and npm
 
-This project relies on both a Python API backend and a React/Vite frontend. Both must be running simultaneously for the analysis to work.
+### 1. Clone the Repository
 
-### 1. Start the Backend API (Terminal 1)
-Open your terminal and navigate to the backend directory:
+```bash
+git clone https://github.com/TIRTHP1234/MAIN-STOCK.git
+cd MAIN-STOCK
+```
+
+### 2. Run the Backend (Terminal 1)
+
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate   # (On Windows)
-# source venv/bin/activate # (On Mac/Linux)
+
+# Windows
+venv\Scripts\activate
+
+# Mac / Linux
+source venv/bin/activate
+
 pip install -r requirements.txt
 python main.py
 ```
-*Note: The backend will automatically bind to `http://127.0.0.1:8000`.*
 
-### 2. Start the Frontend Application (Terminal 2)
-In a completely separate terminal window, run the frontend server from the root directory:
+Backend runs at: `http://127.0.0.1:8000`
+
+### 3. Run the Frontend (Terminal 2)
+
 ```bash
+# From the project root directory
 npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Frontend runs at: `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Usage
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Open the frontend URL in your browser
+2. Type a stock ticker symbol in the search box (e.g., `AAPL`, `TSLA`, `INFY.NS`)
+3. Press **Enter** or click **Analyze**
+4. Watch the 3D loading animation while AI models process the data
+5. Explore the interactive chart, algorithm metrics, and the **AI Forecast Summary**
 
-## What technologies are used for this project?
+### Supported Tickers
 
-This project is built with:
+| Exchange | Examples |
+|----------|---------|
+| NASDAQ / NYSE | `AAPL`, `MSFT`, `TSLA`, `GOOGL`, `AMZN` |
+| NSE (India) | `RELIANCE.NS`, `INFY.NS`, `HDFCBANK.NS`, `WIPRO.NS` |
+| BSE (India) | `RELIANCE.BO`, `TCS.BO` |
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## API Reference
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Health check |
+| `/api/analyze?ticker=AAPL` | GET | Run full ML analysis |
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## Deployment
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project is deployed on **Render**:
 
+- **Backend:** Render Web Service (`backend/` directory)
+  - Build: `pip install -r requirements.txt`
+  - Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
+- **Frontend:** Render Static Site (root directory)
+  - Build: `npm install && npm run build`
+  - Publish: `dist/`
+
+---
+
+## Project Structure
+
+```
+MAIN-STOCK/
+├── backend/
+│   ├── main.py                 # FastAPI app & routes
+│   ├── requirements.txt        # Python dependencies
+│   └── services/
+│       ├── stock_service.py    # yfinance data fetching
+│       └── ml_service.py       # ML model training & prediction
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx          # Header with dark/light toggle
+│   │   ├── AnalysisResults.tsx # Charts & prediction display
+│   │   └── CommandCenter.tsx   # Search input
+│   ├── pages/
+│   │   ├── Index.tsx           # Home page
+│   │   └── AnalysisPage.tsx    # Analysis results page
+│   └── hooks/
+│       └── useTheme.ts         # Dark/light mode hook
+├── setup_instructions.md       # Detailed setup guide
+└── README.md
+```
+
+---
+
+## License
+
+MIT
