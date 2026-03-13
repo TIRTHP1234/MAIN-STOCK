@@ -23,7 +23,7 @@ const AnalysisPage = () => {
       setError(null);
       try {
         const [response] = await Promise.all([
-          axios.get(`http://127.0.0.1:8000/api/analyze?ticker=${ticker.toUpperCase()}`),
+          axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api/analyze?ticker=${ticker.toUpperCase()}`),
           new Promise(resolve => setTimeout(resolve, 4000)) // Guarantee 4 sec animation
         ]);
         setAnalysisData(response.data);
