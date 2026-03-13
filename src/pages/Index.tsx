@@ -1,15 +1,17 @@
 import Navbar from "@/components/Navbar";
-import TickerMarquee from "@/components/TickerMarquee";
-import HeroSearch from "@/components/HeroSearch";
-import AlgorithmCards from "@/components/AlgorithmCards";
+import TickerRibbon from "@/components/TickerRibbon";
+import CommandCenter from "@/components/CommandCenter";
+import AlgorithmSection from "@/components/AlgorithmSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background grain-overlay">
       <Navbar />
-      <TickerMarquee />
-      <HeroSearch />
-      <AlgorithmCards />
+      <TickerRibbon />
+      <CommandCenter />
+      <AlgorithmSection />
+      <Footer />
     </div>
   );
 };
